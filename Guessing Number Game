@@ -1,0 +1,70 @@
+#include <iostream>
+#include <time.h>
+#include <Windows.h>
+using namespace std;
+
+void guessNum(int count, int min, int max)
+{
+    /* initialize random seed: */
+    srand (time(NULL));
+    int random_num = rand() % max + min;
+    printf("\nR: %d\n", random_num);
+    int num = 0;
+
+    system("cls");
+    while(count != 0)
+    {
+        printf("\nGuess a Number: ");
+        scanf("%d", &num);
+        if(num < random_num)
+            printf("Number is too low\n");
+        
+        else if(num > random_num)
+            printf("Number is too high\n");
+        
+        else {
+            printf("You Won..😎\n");
+            return;
+        }
+        count--;
+    }
+    printf("You lost..🙄\n");
+}
+
+int main() {
+
+    int choice;
+
+    while(1)
+    {
+        
+        printf("\n---- Guessing Number Game ----\n");
+        printf("1. Easy\n2. Medium \n3. Hard\n4. Manuals\n5. Exit");
+        printf("\n Your Choice: ");
+        scanf("%d", &choice);
+        printf("-------------------------------");
+        if(choice == 1)    
+            guessNum(5, 1, 100);
+        else if(choice == 2)
+            guessNum(7, 100, 500);
+        else if(choice == 3) 
+            guessNum(7, -200, 200);
+        else if(choice == 4){
+            int max, min;
+            printf("\nYou can set Your own range[min, max]\n");
+            printf("\nSet Min: ");
+            scanf("%d", &min);
+            printf("Set MAx: ");
+            scanf("%d", &max);
+
+            guessNum(7, min, max);
+        }
+        else if(choice == 5)
+            exit(0);
+        else 
+            printf("\nInvalid Choice 😁\n");
+
+    }
+
+    return 0;
+}
